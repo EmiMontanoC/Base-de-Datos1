@@ -7,7 +7,7 @@ public class Datos_Asentamientos {
     public static void main(String[] args){
         TreeMap<Integer, Integer> Codigos_postal_list = new TreeMap<>();
         try {
-            BufferedReader CSVReader = new BufferedReader(new FileReader("codigos_postales_hmo(used).csv"));
+            BufferedReader CSVReader = new BufferedReader(new FileReader("Bases_de_datos/codigos_postales_hmo(used).csv"));
             String linea;
             while ((linea =CSVReader.readLine()) != null) {
                 String[] datos = linea.split(",");
