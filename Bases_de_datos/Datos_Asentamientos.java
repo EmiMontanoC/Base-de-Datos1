@@ -3,24 +3,40 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.TreeMap;
+import java.nio.file.*;
+import java.util.Map;
+
 public class Datos_Asentamientos {
     public static void main(String[] args){
         TreeMap<Integer, Integer> Codigos_postal_list = new TreeMap<>();
-        try {
-            BufferedReader CSVReader = new BufferedReader(new FileReader("Bases_de_datos/codigos_postales_hmo(used).csv"));
+        // try {
+        //     BufferedReader CSVReader = new BufferedReader(new FileReader("Bases_de_datos/codigos_postales_hmo(used).csv"));
+        //     String linea;
+        //     while ((linea =CSVReader.readLine()) != null) {
+        //         String[] datos = linea.split(",");
+        //         int Codigo_postal=Integer.parseInt(datos[0].trim());
+        //         Codigos_postal_list.put(Codigo_postal,Codigos_postal_list.getOrDefault(Codigo_postal, 0)+1);
+        //     }
+        // } catch (IOException | NumberFormatException e) {
+        //     System.out.println(e.getMessage());
+        // }
+        Path csvpath= Paths.get("Bases_de_datos/codigos_postales_hmo(used).csv");
+        try(BufferedReader CSVreader=Files.newBufferedReader(csvpath)){
             String linea;
-            while ((linea =CSVReader.readLine()) != null) {
-                String[] datos = linea.split(",");
+            while((linea =CSVreader.readLine()) != null){
+                String datos[]=linea.split(",");
                 int Codigo_postal=Integer.parseInt(datos[0].trim());
                 Codigos_postal_list.put(Codigo_postal,Codigos_postal_list.getOrDefault(Codigo_postal, 0)+1);
             }
-        } catch (IOException | NumberFormatException e) {
+        } catch(IOException | NumberFormatException e){
             System.out.println(e.getMessage());
         }
         System.out.println("Lectura completa");
-        System.err.println("Listado:");
-        for(int codigo : Codigos_postal_list.keySet()){
-            System.out.println("Codigo Postal: " + codigo + "- Numero de asentamientos: " + Codigos_postal_list.get(codigo));
+        System.out.println("Listado:");
+        for(Map.Entry<Integer,Integer> codigos: Codigos_postal_list.entrySet()){
+            int codigo= codigos.getKey();
+            int asentamientos= codigos.getValue();
+            System.out.println("Codigo Postal: " + codigo + "- Numero de asentamientos: " + asentamientos);
         }
     }
 }
