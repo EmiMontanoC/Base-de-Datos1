@@ -9,6 +9,7 @@ import java.util.Map;
 public class Datos_Asentamientos {
     public static void main(String[] args){
         TreeMap<Integer, Integer> Codigos_postal_list = new TreeMap<>();
+        //Codigo usando FileReader
         // try {
         //     BufferedReader CSVReader = new BufferedReader(new FileReader("Bases_de_datos/codigos_postales_hmo(used).csv"));
         //     String linea;
@@ -20,6 +21,7 @@ public class Datos_Asentamientos {
         // } catch (IOException | NumberFormatException e) {
         //     System.out.println(e.getMessage());
         // }
+        //Codigo uasando NIO
         Path csvpath= Paths.get("Bases_de_datos/codigos_postales_hmo(used).csv");
         try(BufferedReader CSVreader=Files.newBufferedReader(csvpath)){
             String linea;
@@ -56,3 +58,6 @@ public class Datos_Asentamientos {
 //Escritura del codigo: 5min
 //pruebas y correcciones: 10min
 
+//Observaciones
+//En el proceso de progamacion del codigo me di cuenta que no era tan dificil como yo pense al entender a las lbrerias pude visualizar la estructura  y puderealizar el codigo mucho mas rapido
+//de lo que esperaba y con muy pocos errores
